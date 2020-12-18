@@ -1,0 +1,29 @@
+@startuml
+
+[*] --> Stopped
+Stopped : reset fuel counter
+Stopped --> AskingPermissionToTakeOff
+
+AskingPermissionToTakeOff --> TakingOff
+
+TakingOff : decrement fuel counter
+TakingOff --> Flying
+TakingOff --> Crashed
+
+Flying : decrement fuel counter
+Flying --> AskingPermissionToLand
+Flying --> Crashed
+
+AskingPermissionToLand : decrement fuel counter
+AskingPermissionToLand --> Landing
+AskingPermissionToLand --> Crashed
+
+Landing : decrement fuel counter
+Landing --> Landed
+Landing --> Crashed
+
+Landed --> Stopped
+
+Crashed --> [*]
+
+@enduml

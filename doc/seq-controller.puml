@@ -1,0 +1,51 @@
+@startuml
+
+' https://www.uml-diagrams.org/sequence-diagrams.html
+
+collections "Airplanes \n<thread>" as airplanes
+participant "Controller" as controller
+collections "Runway \n <concurrent resource>" as runways
+participant "Console" as output_report
+
+== Taking off ==
+
+
+airplanes -> controller : permission_to_take_off()
+controller -> runways : check_any_available()
+runways --> controller : runaway status
+alt runway is free
+    controller --> airplanes : take_off_authorized()
+else no runway available
+    controller --> airplanes : take_off_denied()
+end
+
+
+== Landing ==
+
+
+airplanes -> controller : permission_to_land()
+controller -> runways : check_any_available()
+runways --> controller : runaway status
+alt runway is free
+    controller --> airplanes : land_authorized()
+else no runway available
+    controller --> airplanes : land_denied()
+end
+
+
+== Show report ==
+
+loop thread is alive
+    controller -> controller : get_landing_queue()
+    controller ->> output_report : show_landing_queue()
+    controller -> controller : get_taking_off_queue()
+    controller ->> output_report : show_taking_off_queue()
+    note over output_report
+        queue position, thread ID, airplane status
+    end note
+end
+
+
+
+
+@enduml
