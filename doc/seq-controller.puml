@@ -3,43 +3,47 @@
 ' https://www.uml-diagrams.org/sequence-diagrams.html
 
 collections "Airplanes \n<thread>" as airplanes
-participant "Controller" as controller
+participant "Airport" as airport
 collections "Runway \n <concurrent resource>" as runways
-participant "Console" as output_report
+participant "Report" as output_report
 
 == Taking off ==
 
 
-airplanes -> controller : permission_to_take_off()
-controller -> runways : check_any_available()
-runways --> controller : runaway status
+airplanes -> airport : permission_to_take_off()
+airport -> runways : check_any_available()
+runways --> airport : runaway status
 alt runway is free
-    controller --> airplanes : take_off_authorized()
+    airport --> airplanes : take_off_authorized()
 else no runway available
-    controller --> airplanes : take_off_denied()
+    airport --> airplanes : take_off_denied()
+else airport timeout
+    airplanes -> airport : permission_to_take_off()
 end
 
 
 == Landing ==
 
 
-airplanes -> controller : permission_to_land()
-controller -> runways : check_any_available()
-runways --> controller : runaway status
+airplanes -> airport : permission_to_land()
+airport -> runways : check_any_available()
+runways --> airport : runaway status
 alt runway is free
-    controller --> airplanes : land_authorized()
+    airport --> airplanes : land_authorized()
 else no runway available
-    controller --> airplanes : land_denied()
+    airport --> airplanes : land_denied()
+else airport timeout
+    airplanes -> airport : permission_to_land()
 end
 
 
 == Show report ==
 
 loop thread is alive
-    controller -> controller : get_landing_queue()
-    controller ->> output_report : show_landing_queue()
-    controller -> controller : get_taking_off_queue()
-    controller ->> output_report : show_taking_off_queue()
+    airport -> airport : get_landing_queue()
+    airport ->> output_report : show_landing_queue()
+    airport -> airport : get_taking_off_queue()
+    airport ->> output_report : show_taking_off_queue()
     note over output_report
         queue position, thread ID, airplane status
     end note
