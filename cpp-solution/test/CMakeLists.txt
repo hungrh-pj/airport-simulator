@@ -51,11 +51,13 @@ set(CMAKE_CXX_FLAGS "-Werror -Wall -Wextra")
 
 include_directories(
     "${gtest_SOURCE_DIR}/include"
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    "${gmock_SOURCE_DIR}/include"
+    ${CMAKE_CURRENT_SOURCE_DIR}/../include
 )
 
 ADD_EXECUTABLE ( ${NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main_test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/Airplane.cpp
 )
 
 target_link_libraries( ${NAME}

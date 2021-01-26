@@ -14,7 +14,7 @@ class Airplane <<Thread>> {
     uint32_t id
     uint32_t fuel
     uint32_t fuel_consumption_rate
-    uint32_t Airport_answer_timeout
+    uint32_t airport_answer_timeout
     AirplaneState state
 
     void start_thread()

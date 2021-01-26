@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "HelloTest.hpp"
+#include "AirplaneTest.hpp"
 
 int main(int argc, char *argv[])
 {
