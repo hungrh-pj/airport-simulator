@@ -1,18 +1,37 @@
 #include "Airplane.hpp"
 
-Airplane::Airplane(std::uint32_t id, std::uint32_t fuel, std::uint32_t fuel_cons_rate,
-    std::uint32_t airport_answer_timeout)
+Airplane::Airplane()
 {
-    this->_id = id;
-    this->_fuel = fuel;
-    this->_fuel_consumption_rate = fuel_cons_rate;
-    this->_airport_answer_timeout = airport_answer_timeout;
-    this->_state = AIRPLANE_STOPPED;
 }
+
+Airplane::Airplane(AirplaneInfo& airplane_info)
+{
+    this->_info = airplane_info;
+    this->_state = AirplaneState::stopped;
+}
+
+// Airplane::~Airplane()
+// {
+// }
 
 AirplaneState Airplane::get_state(void)
 {
     return this->_state;
+}
+
+void Airplane::set_airport(std::shared_ptr<Airport> airport)
+{
+    this->_airport = airport;
+}
+
+std::uint32_t Airplane::get_id(void)
+{
+    return this->_info._id;
+}
+
+std::uint32_t Airplane::get_fuel(void)
+{
+    return this->_info._fuel;
 }
 
 void Airplane::take_off_authorized(void)
@@ -28,5 +47,9 @@ void Airplane::land_authorized(void)
 }
 
 void Airplane::land_denied(void)
+{
+}
+
+void Airplane::update_time_unit(void)
 {
 }

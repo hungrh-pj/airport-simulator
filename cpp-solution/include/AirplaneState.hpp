@@ -2,15 +2,15 @@
 #ifndef AIRPLANE_STATE_HPP // include guard
 #define AIRPLANE_STATE_HPP
 
-enum AirplaneState
+enum class AirplaneState
 {
-    AIRPLANE_STOPPED = 0,
-    AIRPLANE_ASKING_PERMISSION_TO_TAKE_OFF,
-    AIRPLANE_TAKING_OFF,
-    AIRPLANE_FLYING,
-    AIRPLANE_ASKING_PERMISSION_TO_LAND,
-    AIRPLANE_LANDING,
-    AIRPLANE_CRASHED
+    stopped = 0,
+    asking_permission_to_take_off,
+    taking_off,
+    flying,
+    asking_permission_to_land,
+    landing,
+    crashed
 };
 
 #endif /* AIRPLANE_STATE_HPP */

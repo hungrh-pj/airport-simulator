@@ -21,6 +21,9 @@ execute_process(COMMAND "${CMAKE_COMMAND}" --build .
 # when building with Visual Studio
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
+# gtest issue on cygwin - https://github.com/google/googletest/issues/2227
+set(gtest_disable_pthreads ON CACHE BOOL "" FORCE)
+
 # Add googletest directly to our build. This adds the following targets:
 # gtest, gtest_main, gmock and gmock_main
 add_subdirectory("${CMAKE_BINARY_DIR}/googletest-src"
@@ -58,9 +61,12 @@ include_directories(
 ADD_EXECUTABLE ( ${NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/Airplane.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/Airport.cpp
 )
 
 target_link_libraries( ${NAME}
     ${CMAKE_BINARY_DIR}/googletest-build/googlemock/gtest/libgtest.a
     ${CMAKE_BINARY_DIR}/googletest-build/googlemock/gtest/libgtest_main.a
+    ${CMAKE_BINARY_DIR}/googletest-build/googlemock/libgmock.a
+    ${CMAKE_BINARY_DIR}/googletest-build/googlemock/libgmock_main.a
 )

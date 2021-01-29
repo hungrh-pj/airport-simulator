@@ -8,6 +8,16 @@ The first version of airport the controller is a simple FIFO (a flying airplane 
 
 ##  Cygwin
 
+<!-- - dependencies
+
+devel package
+
+git
+libstdc++6
+gcc-g++
+cmake
+binutils -->
+
 - unit test
 
     cd airport-simulator/cpp-solution/test  \
