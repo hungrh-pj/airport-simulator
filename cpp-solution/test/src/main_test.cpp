@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "AirplaneTest.hpp"
+#include "AirplaneStateTest.hpp"
+#include "AirplaneFuelConsumptionTest.hpp"
 
 int main(int argc, char *argv[])
 {

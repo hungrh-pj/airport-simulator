@@ -1,12 +1,11 @@
 #ifndef AIRPORT_HPP // include guard
 #define AIRPORT_HPP
 
-// //  TODO: not worry about how manage object in memory by now
-// #include <memory>
+#include <memory>
 #include <cstdint>
 
-// Forward Declaration class Airplane
-class Airplane;
+#include "Airplane.hpp"
+
 
 class Airport
 {
@@ -16,11 +15,8 @@ public:
      */
     Airport();
 
-    //  TODO: rule of three / five?
-    // virtual ~Airplane();
-
-    virtual bool permission_to_take_off(Airplane& airplane);
-    virtual bool permission_to_land(Airplane& airplane);
+    virtual void permission_to_take_off(std::shared_ptr<Airplane> airplane);
+    virtual void permission_to_land(std::shared_ptr<Airplane> airplane);
 };
 
 #endif /* AIRPORT_HPP */

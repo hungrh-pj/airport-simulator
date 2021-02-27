@@ -8,14 +8,12 @@ Airport::Airport()
 // {
 // }
 
-bool Airport::permission_to_take_off(Airplane& airplane)
+void Airport::permission_to_take_off(std::shared_ptr<Airplane> airplane)
 {
     (void)airplane;
-    return false;
 }
 
-bool Airport::permission_to_land(Airplane& airplane)
+void Airport::permission_to_land(std::shared_ptr<Airplane> airplane)
 {
     (void)airplane;
-    return false;
 }
