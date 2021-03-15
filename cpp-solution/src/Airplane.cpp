@@ -3,6 +3,8 @@
 //  Airport is declared at header by forward declaration
 #include "Airport.hpp"
 
+#include <string.h>
+
 Airplane::Airplane()
 {
     _info = AirplaneInfo();
@@ -17,7 +19,7 @@ Airplane::Airplane()
 
 Airplane::Airplane(AirplaneInfo& airplane_info)
 {
-    _info = airplane_info;
+    memcpy(&_info, &airplane_info, sizeof(AirplaneInfo));
     _state = AirplaneState::stopped;
     _airport = nullptr;
 

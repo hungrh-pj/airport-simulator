@@ -2,6 +2,7 @@
 
 #include "AirplaneStateTest.hpp"
 #include "AirplaneFuelConsumptionTest.hpp"
+#include "AirportTest.hpp"
 
 int main(int argc, char *argv[])
 {

@@ -9,7 +9,7 @@ class Airport;
 #include "AirplaneState.hpp"
 
 /**
- * The rule of five was follow becaus it is necessary to implemente the assignment function
+ * Struct to keep airplane informations
  */
 struct AirplaneInfo
 {
@@ -66,83 +66,6 @@ struct AirplaneInfo
      * Default Constructor
      */
     AirplaneInfo()
-    {
-        reset();
-    }
-
-    /**
-     * Copy Constructor
-     * @param other object which info are copy from
-     */
-    AirplaneInfo(const AirplaneInfo& other)
-    {
-        update_members(other);
-    }
-
-    /**
-     * Move Constructor
-     * @param other object which info are move from
-     */
-    AirplaneInfo(AirplaneInfo&& other)
-    {
-        update_members(other);
-        other.reset();
-    }
-
-    /**
-     * Destructor
-     */
-    virtual ~AirplaneInfo()
-    {
-        reset();
-    }
-
-    /**
-     * Copy assignment
-     * @param other object which info are copy from
-     */
-    AirplaneInfo& operator=(AirplaneInfo& other)
-    {
-        update_members(other);
-        return *this;
-    }
-
-    /**
-     * Move assignment
-     * @param other object which info are move from
-     */
-    AirplaneInfo& operator=(AirplaneInfo&& other)
-    {
-        update_members(other);
-        other.reset();
-        return *this;
-    }
-
-private:
-
-    void update_members(const AirplaneInfo& other)
-    {
-        _id = other._id;
-        _fuel = other._fuel;
-        _fuel_capacity = other._fuel_capacity;
-        _fuel_consumption_rate = other._fuel_consumption_rate;
-
-        _airport_answer_time_unit_counter = other._airport_answer_time_unit_counter;
-        _airport_answer_time_unit_limit = other._airport_answer_time_unit_limit;
-        _taking_off_time_unit_counter = other._taking_off_time_unit_counter;
-        _taking_off_time_unit_limit = other._taking_off_time_unit_limit;
-        _flying_time_unit_counter = other._flying_time_unit_counter;
-        _flying_time_unit_limit = other._flying_time_unit_limit;
-        _landing_time_unit_counter = other._landing_time_unit_counter;
-        _landing_time_unit_limit = other._landing_time_unit_limit;
-        _landed_time_unit_counter = other._landed_time_unit_counter;
-        _landed_time_unit_limit = other._landed_time_unit_limit;
-    }
-
-    /**
-     * Reset class members - prevent the usage of moved object (it would has the same ID)
-     */
-    void reset()
     {
         _id = 0;
         _fuel = 0;
